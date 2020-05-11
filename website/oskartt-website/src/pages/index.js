@@ -1,15 +1,20 @@
 import React from "react"
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
-import HeroWrapper from "../components/Hero_wrapper/HeroWrapper";
+import HeroSection from "../components/Hero_section/HeroSection";
+import AboutSection from "../components/About_section/AboutSection";
 import { graphql } from "gatsby";
+import NumberSection from "../components/Numbers_section/NumbersSection";
+
 
 
 const IndexPage = ({data}) => {
   return (
     <Layout>
       <Header/>
-      <HeroWrapper image={data} />
+      <HeroSection image={data} />
+      <AboutSection />
+      <NumberSection />
     </Layout>
   )
 }

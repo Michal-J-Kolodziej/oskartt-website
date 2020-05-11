@@ -9,11 +9,11 @@ const StyledWrapper = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 
-    /* position: relative; */
     background-image: linear-gradient(232deg, ${({theme}) => theme.colors.violet} 0%, ${({theme}) => theme.colors.blue} 100%);
 
     padding: 50px 30px;
     height: ${({height}) => height ? height : '100vh'};
+
 
     ${({theme}) => theme.media.tablet`
         padding: 40px 70px;
@@ -22,6 +22,18 @@ const StyledWrapper = styled.div`
     ${({theme}) => theme.media.desktop`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
+
+        ::after {
+            position: absolute;
+            bottom: 0;
+            left: -10%;
+            content: "music";
+            text-transform: uppercase;
+            font-size: 250px;
+            color: rgba(255, 255, 255, 0.01);
+            letter-spacing: 1px;
+            font-weight: ${({theme}) => theme.font.medium};
+        }
     `}
 
     ::before {
@@ -43,7 +55,6 @@ const StyledWrapper = styled.div`
             border-right: 175px solid transparent;
             border-top: 100vh solid ${({theme}) => theme.colors.black};
         `}
-        
     }
 
 `;
@@ -154,6 +165,8 @@ const StyledButton = styled.button`
     border-radius: 25px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     background-image: linear-gradient(232deg, ${({theme}) => theme.colors.violet} 0%, ${({theme}) => theme.colors.blue} 100%);
+    cursor: pointer;
+
 
     ${({theme}) => theme.media.tablet`
         font-size: 13px;
@@ -163,11 +176,16 @@ const StyledButton = styled.button`
         width: 150px;
         height: 35px;
         font-size: 15px;
+
+        &:hover {
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+        }
+
     `}
 `;
 
 
-const HeroWrapper = ({image}) => {
+const HeroSection = ({image}) => {
     return (
         <StyledWrapper>
             <StyledHeroTextContainer>
@@ -186,4 +204,4 @@ const HeroWrapper = ({image}) => {
     )
 }
 
-export default HeroWrapper;
+export default HeroSection;
