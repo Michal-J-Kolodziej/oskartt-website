@@ -3,15 +3,17 @@ import styled from 'styled-components';
 
 const StyledWrapper = styled.section`
     padding: 50px 30px;
+    height: ${({height}) => height ? height : '100vh'};
+    background-color: ${({theme}) => theme.colors.black};
 
     ${({theme}) => theme.media.tablet`
         padding: 40px 70px;
     `}
 `;
 
-const SectionWrapper = ({children}) => {
+const SectionWrapper = ({children, height}) => {
     return (
-        <StyledWrapper>
+        <StyledWrapper height={height}>
             {children}
         </StyledWrapper>
     )

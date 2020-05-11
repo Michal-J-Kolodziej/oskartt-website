@@ -10,10 +10,11 @@ const StyledMenuWrapper = styled.ul`
     list-style: none;
     display: flex;
     flex-direction: row;
+    flex-wrap: no-wrap;
 `;
 
 const StyledMenuItem = styled.li`
-    display: block;
+    display: inline;
     margin-left: 20px;
 
     ${({theme}) => theme.media.desktop`
@@ -26,7 +27,7 @@ const StyledSocial = styled.a`
     width: 23px;
 
     ${({theme}) => theme.media.tablet`
-        width: 45px;
+        width: 35px;
     `}
 
     & {
@@ -45,15 +46,23 @@ const Socials = () => {
                 <StyledSocial href="https://soundcloud.com/oskarttofficial" target="_blank">
                     <Soundcloud />
                 </StyledSocial>
+            </StyledMenuItem>
+            <StyledMenuItem>
                 <StyledSocial href="https://open.spotify.com/artist/2OVetJ63mx7fvwt2xKPfYY" target="_blank">
                     <Spotify />
                 </StyledSocial>
+            </StyledMenuItem>
+            <StyledMenuItem>
                 <StyledSocial href="https://www.youtube.com/c/OskarTT" target="_blank">
                     <Youtube />
                 </StyledSocial>
+            </StyledMenuItem>
+            <StyledMenuItem>
                 <StyledSocial href="https://www.instagram.com/oskarttofficial/" target="_blank">
                     <Instagram />
                 </StyledSocial>
+            </StyledMenuItem>
+            <StyledMenuItem>
                 <StyledSocial href="https://www.facebook.com/OskarT.TOfficial/" target="_blank">
                     <Facebook />
                 </StyledSocial>
