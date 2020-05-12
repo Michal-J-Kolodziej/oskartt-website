@@ -18,7 +18,7 @@ const StyledH2 = styled.h2`
         display: block;
         content: '';
         position: absolute;
-        bottom: -5px;
+        bottom: -10px;
         left: 50%;
         transform: translateX(-50%);
 

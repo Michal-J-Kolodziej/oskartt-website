@@ -199,7 +199,7 @@ const HeroSection = ({image}) => {
                     <StyledButton>Contact</StyledButton>
                 </StyledButtonContainer>
             </StyledHeroTextContainer>
-            <StyledImg fluid={image.file.childImageSharp.fluid} />
+            <StyledImg fluid={image.childImageSharp.fluid} />
         </StyledWrapper>
     )
 }

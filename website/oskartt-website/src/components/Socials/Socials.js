@@ -39,9 +39,9 @@ const StyledSocial = styled.a`
     }
 `;
 
-const Socials = () => {
+const Socials = ({className}) => {
     return (
-        <StyledMenuWrapper>
+        <StyledMenuWrapper className={className}>
             <StyledMenuItem>
                 <StyledSocial href="https://soundcloud.com/oskarttofficial" target="_blank">
                     <Soundcloud />
