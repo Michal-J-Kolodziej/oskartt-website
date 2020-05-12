@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import theme from 'utils/theme';
-import SEO from 'components/Seo/SEO';
+import theme from '../../utils/theme';
+import SEO from '../Seo/SEO';
 
 const GlobalStyle = createGlobalStyle`
     *, *::after, *::before {
