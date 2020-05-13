@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import CountUp from 'react-countup';
 
-const StyledNumber = styled.p`
+const StyledNumber = styled(CountUp)`
 
     color: rgba(${({theme}) => theme.colors.white80});
     font-weight: ${({theme}) => theme.font.medium};
@@ -11,26 +12,19 @@ const StyledNumber = styled.p`
 
     ${({theme}) => theme.media.tablet`
         font-size: 25px;
-        // margin-bottom: 30px;
     `}
 
     ${({theme}) => theme.media.desktop`
         font-size: 35px;
-        // margin-bottom: 45px;
     `}
 `;
 
 
-class NumberCounter extends Component {
+const NumberCounter = ({number}) => {
 
-    render() {
-
-        return (
-            <StyledNumber>
-                {this.props.number}
-            </StyledNumber>
-        )
-    }
+    return (
+        <StyledNumber end={parseInt(number)} />
+    )
 }
 
 export default NumberCounter;

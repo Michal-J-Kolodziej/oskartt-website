@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import HeroSection from "../components/Hero_section/HeroSection";
@@ -8,15 +8,25 @@ import NumberSection from "../components/Numbers_section/NumbersSection";
 import OpinionsSection from "../components/Opinions_section/OpinionsSection";
 import WorkSection from "../components/Work_section/WorkSection";
 import Footer from "../components/Footer/Footer";
+import VisiblitySensor from "react-visibility-sensor";
 
 
 const IndexPage = ({data}) => {
+
+  const [numbersVisible, setNumbersVisible] = useState(false);
+
+  // useEffect(() => {
+
+  // }, []);
+
   return (
     <Layout>
       <Header/>
       <HeroSection image={data.hero} />
       <AboutSection />
-      <NumberSection />
+      <VisiblitySensor partialVisibility onChange={(isVisible) => !numbersVisible ? setNumbersVisible(isVisible) : null}>
+        <NumberSection visible={numbersVisible} />
+      </VisiblitySensor>
       <OpinionsSection />
       <WorkSection image={data.work} />
       <Footer />

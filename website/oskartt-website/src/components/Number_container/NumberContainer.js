@@ -2,36 +2,41 @@ import React from 'react';
 import styled from 'styled-components';
 import NumberCounter from '../Number_counter/NumberCounter';
 
+
 const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
 
     position: relative;
 
-    width: 100%;
+    min-width: 100%;
     margin-bottom: 30px;
+    
+    overflow: hidden;
 
     ::after {
         display: block;
         content: "";
         position: absolute;
-        left: 0;
+        left: ${({animate}) => animate ? '0' : "-20%"};
         bottom: 0;
 
         height: 3px;
         width: 20%;
         border-radius: 5px;
         background-color: ${({theme, color}) => theme.colors[color]};
+
+        transition: 0.5s 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
 
     ${({theme}) => theme.media.tablet`
-        width: 50%;
+        min-width: 50%;
         margin-bottom: 50px;
     `}
 
     ${({theme}) => theme.media.desktop`
-        width: 33%;
+        min-width: 33%;
         margin-bottom: 70px;
     `}
 `;
@@ -71,12 +76,13 @@ const StyledSubtitle = styled.h5`
 
 
 
-const NumberContainer = ({title, subtitle, number, color}) => {
+const NumberContainer = ({title, subtitle, number, color, animate}) => {
+    console.log(animate);
     return (
-        <StyledContainer color={color}>
+        <StyledContainer color={color} animate={animate}>  
             <StyledTitle>{title}</StyledTitle>
             <StyledSubtitle>{subtitle}</StyledSubtitle>
-            <NumberCounter number={number}/>
+            <NumberCounter number={animate ? number : 0}/>
         </StyledContainer>
     )
 }

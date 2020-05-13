@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import SectionWrapper from '../Section_wrapper/SectionWrapper';
 import NumberContainer from '../Number_container/NumberContainer';
@@ -9,15 +9,80 @@ const StyledWrapper = styled.div`
     flex-wrap: wrap;
 `;
 
-const NumberSection = () => {
+const NumberSection = ({visible}) => {
+
+    const [spotifyFollowersNumber, setSpotifyFollowersNumber] = useState(0);
+    const [youtubeSubscribersNumber, setYoutubeSubscribersNumber] = useState(0);
+    const [instagramFollowersNumber, setInstagramFollowersNumber] = useState(0);
+    const [soundcloudFollowersNumber, setSoundcloudFollowersNumber] = useState(0);
+    // const [facebookLikesNumber, setFacebookFanpageLikes] = useState(0);
+
+    useEffect(() => {
+        getSpotifyFollowersNumber();
+        getYoutubeSubscribersNumber();
+        getInstagramFollowersNumber();
+        // getFacebookLikesNumber();
+        getSoundcloudFollowersNumber();
+    }, []);
+
+    const getSpotifyFollowersNumber = () => {
+        const oskarID = "2OVetJ63mx7fvwt2xKPfYY";
+        const link = "https://api.spotify.com/v1/artists/";
+
+        fetch(link + oskarID)
+        .then(response => response.json())
+        .then(data => setSpotifyFollowersNumber(parseInt(data.followers.total)))
+        .catch(err => console.log(err));
+    }
+
+    const getYoutubeSubscribersNumber = () => {
+        const oskarID = "UC2tut2uPQ03NJuWt9vERSlw";
+        const apiKey = "AIzaSyCYQNff-B28PImGKYyjqBWdu3aYUhIoUY4"
+        const link = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${oskarID}&key=${apiKey}`;
+
+        fetch(link)
+        .then(response => response.json())
+        .then(data => setYoutubeSubscribersNumber(parseInt(data.items[0].statistics.subscriberCount)))
+        .catch(err => console.log(err));
+    }
+
+    const getInstagramFollowersNumber = () => {
+        const oskarUsername = "oskarttofficial";
+        const link = `https://www.instagram.com/${oskarUsername}/?__a=1`;
+        fetch(link)
+        .then(response => response)
+        .then(data => data.json())
+        .then(data => setInstagramFollowersNumber(data.graphql.user.edge_followed_by.count))
+        .catch(err => console.log(err));
+        
+    }
+
+    const getSoundcloudFollowersNumber = () => {
+        const link = `https://api.soundcloud.com/users/oskarttofficial?consumer_key=8bcccc3476eaa137a084c9f0c041915f`;
+
+        fetch(link)
+        .then(response => response.json())
+        .then(data => setSoundcloudFollowersNumber(data.followers_count))
+        .catch(err => console.log(err));
+    }
+
+    // const getFacebookLikesNumber = () => {
+    //     // const oskarID = '556344861218935';
+    //     // const link = `graph.facebook.com/v7.0/${oskarId}/likes`;
+        
+    //     // fetch("http://www.facebook.com/plugins/fan.php?connections=100&id=556344861218935")
+    //     // .then(response => console.log(response))
+    //     // .catch(err => console.log(err));
+    // }
+
     return (
-        <SectionWrapper>
+        <SectionWrapper >
             <StyledWrapper>
-                <NumberContainer title={"Spotify"} subtitle={"followers"} number={"20000"} color={"pink"} />
-                <NumberContainer title={"Youtube"} subtitle={"subscribers"} number={"20000"} color={"blue"} />
-                <NumberContainer title={"Instagram"} subtitle={"followers"} number={"20000"} color={"pink"} />
-                <NumberContainer title={"Facebook"} subtitle={"fanpage likes"} number={"20000"} color={"blue"} />
-                <NumberContainer title={"Soundcloud"} subtitle={"followers"} number={"20000"} color={"pink"} />
+                <NumberContainer title={"Spotify"} subtitle={"followers"} number={spotifyFollowersNumber} color={"pink"} animate={visible} />
+                <NumberContainer title={"Youtube"} subtitle={"subscribers"} number={youtubeSubscribersNumber} color={"blue"} animate={visible} />
+                <NumberContainer title={"Instagram"} subtitle={"followers"} number={instagramFollowersNumber} color={"pink"} animate={visible} />
+                <NumberContainer title={"Facebook"} subtitle={"fanpage likes"} number={"20000"} color={"blue"} animate={visible} />
+                <NumberContainer title={"Soundcloud"} subtitle={"followers"} number={soundcloudFollowersNumber} color={"pink"} animate={visible} />
             </StyledWrapper>
         </SectionWrapper>
     )
