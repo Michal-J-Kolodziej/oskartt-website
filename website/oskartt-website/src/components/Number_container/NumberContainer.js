@@ -77,7 +77,6 @@ const StyledSubtitle = styled.h5`
 
 
 const NumberContainer = ({title, subtitle, number, color, animate}) => {
-    console.log(animate);
     return (
         <StyledContainer color={color} animate={animate}>  
             <StyledTitle>{title}</StyledTitle>

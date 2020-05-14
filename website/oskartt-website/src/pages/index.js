@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import HeroSection from "../components/Hero_section/HeroSection";
@@ -14,10 +14,6 @@ import VisiblitySensor from "react-visibility-sensor";
 const IndexPage = ({data}) => {
 
   const [numbersVisible, setNumbersVisible] = useState(false);
-
-  // useEffect(() => {
-
-  // }, []);
 
   return (
     <Layout>

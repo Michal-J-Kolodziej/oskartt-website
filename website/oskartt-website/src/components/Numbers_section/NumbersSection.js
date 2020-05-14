@@ -28,8 +28,9 @@ const NumberSection = ({visible}) => {
     const getSpotifyFollowersNumber = () => {
         const oskarID = "2OVetJ63mx7fvwt2xKPfYY";
         const link = "https://api.spotify.com/v1/artists/";
+        const authId = "fc847cbd8e6e43c995ef3c40843dcb12";
 
-        fetch(link + oskarID)
+        fetch(link + oskarID, { headers: { Authorization: 'Bearer ' + authId} })
         .then(response => response.json())
         .then(data => setSpotifyFollowersNumber(parseInt(data.followers.total)))
         .catch(err => console.log(err));
@@ -66,14 +67,15 @@ const NumberSection = ({visible}) => {
         .catch(err => console.log(err));
     }
 
-    // const getFacebookLikesNumber = () => {
-    //     // const oskarID = '556344861218935';
-    //     // const link = `graph.facebook.com/v7.0/${oskarId}/likes`;
+    const getFacebookLikesNumber = () => {
+        // const oskarID = '556344861218935';
+        // const link = `graph.facebook.com/v7.0/${oskarId}/likes`;
         
-    //     // fetch("http://www.facebook.com/plugins/fan.php?connections=100&id=556344861218935")
-    //     // .then(response => console.log(response))
-    //     // .catch(err => console.log(err));
-    // }
+        fetch("https://stackoverflow.com/questions/11117745/facebook-how-to-show-the-facebook-page-likes-count-and-like-button-to-like-the")
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+    }
 
     return (
         <SectionWrapper >
