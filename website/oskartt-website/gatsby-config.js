@@ -40,17 +40,16 @@ module.exports = {
         images: path.join(__dirname, 'src/images'),
       }
     },
-    // {
-    //   resolve: "gatsby-source-graphql",
-    //   options: {
-    //     typeName: "Spotify",
-    //     fieldName: "spotify",
-    //     url: "https://api.spotify.com/v1/artists/2OVetJ63mx7fvwt2xKPfYY",
-    //     headers: {
-    //       Authorization: `Bearer ${process.env.GATSBY_SPOTIFY_API_KEY}`,
-    //     }
-    //   },
-    // },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "Youtube",
+        fieldName: "youtube",
+        url: "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC2tut2uPQ03NJuWt9vERSlw&key=AIzaSyCYQNff-B28PImGKYyjqBWdu3aYUhIoUY4",
+        fetch: (uri, options = {}) =>
+          fetch(uri, { ...options, headers: sign(options.headers) }),
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -14,8 +14,7 @@ import VisiblitySensor from "react-visibility-sensor";
 const IndexPage = ({data}) => {
 
   const [numbersVisible, setNumbersVisible] = useState(false);
-  console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
-  console.log(process.env.GATSBY_YOUTUBE_API_KEY);
+  
   return (
     <Layout>
       <Header/>
