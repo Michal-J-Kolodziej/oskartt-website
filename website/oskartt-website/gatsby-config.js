@@ -39,17 +39,7 @@ module.exports = {
         utils: path.join(__dirname, 'src/utils'),
         images: path.join(__dirname, 'src/images'),
       }
-    },
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        typeName: "Youtube",
-        fieldName: "youtube",
-        url: "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC2tut2uPQ03NJuWt9vERSlw&key=AIzaSyCYQNff-B28PImGKYyjqBWdu3aYUhIoUY4",
-        fetch: (uri, options = {}) =>
-          fetch(uri, { ...options, headers: sign(options.headers) }),
-      },
-    },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
