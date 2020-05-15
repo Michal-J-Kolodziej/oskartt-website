@@ -15,4 +15,4 @@ const getYoutubeData = async () => {
     return await (await fetch(link)).json();
 }
 
-console.log(getYoutubeData);
+console.log(await getYoutubeData());
