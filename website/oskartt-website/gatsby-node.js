@@ -12,7 +12,8 @@ const getYoutubeData = async () => {
 
     const oskarID = "UC2tut2uPQ03NJuWt9vERSlw";
     const link = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${oskarID}&key=${process.env.GATSBY_YOUTUBE_API_KEY}`;
-    return await (await fetch(link)).json();
+    const data = await (await fetch(link)).json();
+    console.log(data);
 }
 
-console.log(await getYoutubeData());
+getYoutubeData();
