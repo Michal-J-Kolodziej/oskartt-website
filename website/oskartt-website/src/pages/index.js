@@ -14,7 +14,7 @@ import VisiblitySensor from "react-visibility-sensor";
 const IndexPage = ({data}) => {
 
   const [numbersVisible, setNumbersVisible] = useState(false);
-
+  console.log(process.env);
   return (
     <Layout>
       <Header/>
