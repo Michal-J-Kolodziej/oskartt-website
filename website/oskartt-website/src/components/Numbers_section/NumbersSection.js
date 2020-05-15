@@ -25,15 +25,37 @@ const NumberSection = ({visible}) => {
         getSoundcloudFollowersNumber();
     }, []);
 
-    const getSpotifyFollowersNumber = () => {
+    // const getSpotifyFollowersNumber = () => {
+    //     const oskarID = "2OVetJ63mx7fvwt2xKPfYY";
+    //     const link = "https://api.spotify.com/v1/artists/";
+    //     const authId = "";
+
+    //     fetch(link + oskarID, { headers: { Authorization: 'Bearer ' + authId} })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    //     // .then(data => setSpotifyFollowersNumber(parseInt(data.followers.total)))
+    //     .catch(err => console.log(err));
+    // }
+
+
+    const getSpotifyFollowersNumber = async () => {
         const oskarID = "2OVetJ63mx7fvwt2xKPfYY";
         const link = "https://api.spotify.com/v1/artists/";
-        const authId = "fc847cbd8e6e43c995ef3c40843dcb12";
+        const clientID = btoa("fc847cbd8e6e43c995ef3c40843dcb12");
+        const clientSecret = btoa("X");
 
-        fetch(link + oskarID, { headers: { Authorization: 'Bearer ' + authId} })
-        .then(response => response.json())
-        .then(data => setSpotifyFollowersNumber(parseInt(data.followers.total)))
-        .catch(err => console.log(err));
+        const auth = await fetch("https://accounts.spotify.com/api/token", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': "Basic " + clientID + ':' + clientSecret
+            },
+            body: {
+                grant_type: 'client_credentials'
+            }
+        });
+
+        console.log(auth);
     }
 
     const getYoutubeSubscribersNumber = () => {
