@@ -14,6 +14,8 @@ const StyledWrapper = styled.div`
     padding: 50px 30px;
     height: ${({height}) => height ? height : '100vh'};
 
+    overflow: hidden;
+
 
     ${({theme}) => theme.media.tablet`
         padding: 40px 70px;
