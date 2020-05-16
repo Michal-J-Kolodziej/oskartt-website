@@ -192,8 +192,27 @@ const HeroSection = ({image}) => {
         scrollTo('#work-section');
     }
 
+    if (typeof window === `undefined`) {
+        return(
+            <StyledWrapper innerWidth={300}>
+                <StyledHeroTextContainer>
+                    <StyledTextContainer>
+                        <StyledH1>oskar tt</StyledH1>
+                        <StyledH2>dj, producer, designer</StyledH2>
+                    </StyledTextContainer>
+
+                    <StyledButtonContainer>
+                        <StyledP>Want to work with me?</StyledP>
+                        <StyledButton onClick={() => scrollToWorkSection()}>Contact</StyledButton>
+                    </StyledButtonContainer>
+                </StyledHeroTextContainer>
+                <StyledImg fluid={image.childImageSharp.fluid} />
+            </StyledWrapper>
+        );
+    }
+
     return (
-        <StyledWrapper innerWidth={typeof window === undefined ? 300 : window.innerWidth}>
+        <StyledWrapper innerWidth={window.innerWidth}>
             <StyledHeroTextContainer>
                 <StyledTextContainer>
                     <StyledH1>oskar tt</StyledH1>
