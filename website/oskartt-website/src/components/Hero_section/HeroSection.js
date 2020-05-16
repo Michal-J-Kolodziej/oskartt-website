@@ -12,7 +12,7 @@ const StyledWrapper = styled.div`
 
     background-image: linear-gradient(232deg, ${({theme}) => theme.colors.violet} 0%, ${({theme}) => theme.colors.blue} 100%);
 
-    padding: 50px 30px;
+    padding: 50px 30px 0 30px;
     height: ${({height}) => height ? height : '100vh'};
 
     ${({theme}) => theme.media.tablet`
