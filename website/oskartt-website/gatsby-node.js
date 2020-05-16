@@ -74,7 +74,7 @@ exports.sourceNodes = async ({
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': "Basic " + clientID +  Buffer.from(':').toString('base64') + clientSecret
+            'Authorization': "Basic " + clientID +  ':' + clientSecret
         },
         body: {
             'grant_type': 'client_credentials'
