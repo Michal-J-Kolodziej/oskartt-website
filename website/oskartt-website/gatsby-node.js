@@ -77,7 +77,7 @@ exports.sourceNodes = async ({
             'Authorization': "Basic " + clientID +  ':' + clientSecret
         },
         body: {
-            'grant_type': 'client_credentials'
+            grant_type: 'client_credentials'
         }
     });
 
