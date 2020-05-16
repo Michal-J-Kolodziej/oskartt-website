@@ -192,12 +192,8 @@ const HeroSection = ({image}) => {
         scrollTo('#work-section');
     }
 
-    if (typeof window === `undefined`) {
-        return(<></>);
-    }
-
     return (
-        <StyledWrapper innerWidth={window.innerWidth}>
+        <StyledWrapper innerWidth={window === undefined ? 300 : window.innerWidth}>
             <StyledHeroTextContainer>
                 <StyledTextContainer>
                     <StyledH1>oskar tt</StyledH1>
