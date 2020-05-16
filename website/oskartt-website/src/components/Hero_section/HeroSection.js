@@ -14,8 +14,6 @@ const StyledWrapper = styled.div`
     padding: 50px 30px;
     height: ${({height}) => height ? height : '100vh'};
 
-    overflow: hidden;
-
 
     ${({theme}) => theme.media.tablet`
         padding: 40px 70px;
@@ -94,7 +92,7 @@ const StyledTextContainer = styled.div`
         margin-bottom: 0;
     `}
 `;
-// TODO: Zmienić czcionkę
+
 const StyledH1 = styled.h1`
     text-transform: uppercase;
     font-size: 50px;

@@ -121,7 +121,7 @@ const WorkSection = ({image}) => {
                         <StyledTitle
                             underlineColor={'blue'}
                         >
-                            about me
+                            Work with me
                         </StyledTitle>
                         <StyledP>
                             {paragraphText}

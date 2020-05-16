@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../utils/theme';
 import SEO from '../Seo/seo';
@@ -13,13 +14,20 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
+const StyledDiv = styled.div`
+    max-width: 100vw;
+    overflow: hidden;
+`;
+
 const Layout = ({children}) => {
 
     return (
         <ThemeProvider theme={theme}>
             <SEO/>
             <GlobalStyle/>
-            {children}
+            <StyledDiv>
+                {children}
+            </StyledDiv>
         </ThemeProvider>
     )
 }
