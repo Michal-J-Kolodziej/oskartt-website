@@ -6,6 +6,7 @@
 
 // You can delete this file if you're not using it
 const fetch = require(`node-fetch`);
+const https = require(`https`);
 
 exports.sourceNodes = async ({
   actions: { createNode },
@@ -70,16 +71,46 @@ exports.sourceNodes = async ({
     const clientID = Buffer.from('fc847cbd8e6e43c995ef3c40843dcb12').toString('base64');
     const clientSecret = Buffer.from('3bbb9770daf6451a9118e776983f2679').toString('base64');
     console.log(clientID);
+
+
     const auth = await fetch("https://accounts.spotify.com/api/token", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': "Basic " + clientID +  ':' + clientSecret
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "Basic " + Buffer.from('fc847cbd8e6e43c995ef3c40843dcb12:3bbb9770daf6451a9118e776983f2679').toString('base64')
         },
-        body: {
-            grant_type: 'client_credentials'
-        }
+        body: `grant_type=client_credentials`
     });
+
+    // const options = {
+    //   hostname: 'accounts.spotify.com',
+    //   path: '/api/token',
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': "application/x-www-form-urlencoded",
+    //     "Authorization": "Basic " + Buffer.from('fc847cbd8e6e43c995ef3c40843dcb12:3bbb9770daf6451a9118e776983f2679').toString('base64')
+    //   },
+    //   data: {
+    //     grant_type: "client_credentials"
+    //   }
+      
+      
+    // }
+
+    // const req = https.request(options, res => {
+    //   console.log(`statusCode: ${res.statusCode}`)
+    
+    //   res.on('data', d => {
+    //     console.log("DATAAAAA    " + d);
+    //   })
+    // })
+    
+    // req.on('error', error => {
+    //   console.error(error)
+    // })
+    
+    // // req.write(data)
+    // req.end()
 
     console.log(auth);
 //   const resultSoundcloud = await fetch(`https://api.soundcloud.com/users/oskarttofficial?consumer_key=8bcccc3476eaa137a084c9f0c041915f`)
