@@ -18,6 +18,7 @@ const NumberSection = ({visible, data: { spotify, instagram, soundcloud, youtube
     const [soundcloudFollowersNumber, setSoundcloudFollowersNumber] = useState(0);
     
     useEffect(() => {
+        console.log('elo');
         setSpotifyFollowersNumber(spotify.followers);
         setYoutubeSubscribersNumber(youtube.subscribers);
         setInstagramFollowersNumber(instagram.followers);
