@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../utils/theme';
 import SEO from '../Seo/seo';
@@ -12,9 +11,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Montserrat';
         font-weight: 400;
     }
-`;
 
-const StyledDiv = styled.div`
     max-width: 100vw;
     overflow: hidden;
 `;
@@ -25,9 +22,7 @@ const Layout = ({children}) => {
         <ThemeProvider theme={theme}>
             <SEO/>
             <GlobalStyle/>
-            <StyledDiv>
-                {children}
-            </StyledDiv>
+            {children}
         </ThemeProvider>
     )
 }
