@@ -7,6 +7,8 @@
 // You can delete this file if you're not using it
 const fetch = require(`node-fetch`);
 
+// USE process.env.GATSBY_... 
+
 exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
