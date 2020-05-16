@@ -11,9 +11,6 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Montserrat';
         font-weight: 400;
     }
-
-    max-width: 100vw;
-    overflow: hidden;
 `;
 
 const Layout = ({children}) => {

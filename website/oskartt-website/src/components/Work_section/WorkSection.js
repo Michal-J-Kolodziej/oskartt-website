@@ -114,7 +114,7 @@ const paragraphText = `lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 const WorkSection = ({image}) => {
     return (
         <SectionWrapper>
-            <StyledWrapper>
+            <StyledWrapper id={'work-section'}>
                 <StyledImg fluid={image.childImageSharp.fluid} />
                 <StyledContentContainer>
                     <div>

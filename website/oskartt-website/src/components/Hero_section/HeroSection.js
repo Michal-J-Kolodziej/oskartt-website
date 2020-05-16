@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import scrollTo from 'gatsby-plugin-smoothscroll';
 
 
 const StyledWrapper = styled.div`
@@ -13,7 +14,6 @@ const StyledWrapper = styled.div`
 
     padding: 50px 30px;
     height: ${({height}) => height ? height : '100vh'};
-
 
     ${({theme}) => theme.media.tablet`
         padding: 40px 70px;
@@ -44,9 +44,10 @@ const StyledWrapper = styled.div`
         content: '';
         display: block;
         
-        width: 60%;
+        width: ${window.innerWidth * 0.6 + "px"};
         border-left: 0px solid transparent;
-        border-right: 175px solid transparent;
+        /* border-right: 175px solid transparent; */
+        border-right: calc(100vw - ${window.innerWidth * 0.6 + "px"}) solid transparent;
         border-top: 100vh solid ${({theme}) => theme.colors.black};
 
         ${({theme}) => theme.media.desktop`
@@ -186,6 +187,11 @@ const StyledButton = styled.button`
 
 
 const HeroSection = ({image}) => {
+
+    const scrollToWorkSection = () => {
+        scrollTo('#work-section');
+    }
+
     return (
         <StyledWrapper>
             <StyledHeroTextContainer>
@@ -196,7 +202,7 @@ const HeroSection = ({image}) => {
 
                 <StyledButtonContainer>
                     <StyledP>Want to work with me?</StyledP>
-                    <StyledButton>Contact</StyledButton>
+                    <StyledButton onClick={() => scrollToWorkSection()}>Contact</StyledButton>
                 </StyledButtonContainer>
             </StyledHeroTextContainer>
             <StyledImg fluid={image.childImageSharp.fluid} />
