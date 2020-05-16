@@ -6,7 +6,6 @@
 
 // You can delete this file if you're not using it
 const fetch = require(`node-fetch`);
-const https = require(`https`);
 
 exports.sourceNodes = async ({
   actions: { createNode },
@@ -68,65 +67,38 @@ exports.sourceNodes = async ({
 
   //Spotify
     
-    const clientID = Buffer.from('fc847cbd8e6e43c995ef3c40843dcb12').toString('base64');
-    const clientSecret = Buffer.from('3bbb9770daf6451a9118e776983f2679').toString('base64');
-    console.log(clientID);
+    const clientID = 'fc847cbd8e6e43c995ef3c40843dcb12';
+    const clientSecret = '3bbb9770daf6451a9118e776983f2679';
 
 
     const auth = await fetch("https://accounts.spotify.com/api/token", {
         method: 'POST',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "Basic " + Buffer.from('fc847cbd8e6e43c995ef3c40843dcb12:3bbb9770daf6451a9118e776983f2679').toString('base64')
+            "Authorization": "Basic " + Buffer.from(`${clientID}:${clientSecret}`).toString('base64')
         },
         body: `grant_type=client_credentials`
     });
 
-    // const options = {
-    //   hostname: 'accounts.spotify.com',
-    //   path: '/api/token',
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': "application/x-www-form-urlencoded",
-    //     "Authorization": "Basic " + Buffer.from('fc847cbd8e6e43c995ef3c40843dcb12:3bbb9770daf6451a9118e776983f2679').toString('base64')
-    //   },
-    //   data: {
-    //     grant_type: "client_credentials"
-    //   }
-      
-      
-    // }
+  const token = await auth.json();
 
-    // const req = https.request(options, res => {
-    //   console.log(`statusCode: ${res.statusCode}`)
-    
-    //   res.on('data', d => {
-    //     console.log("DATAAAAA    " + d);
-    //   })
-    // })
-    
-    // req.on('error', error => {
-    //   console.error(error)
-    // })
-    
-    // // req.write(data)
-    // req.end()
+  const resultSpotify = await fetch("https://api.spotify.com/v1/artists/2OVetJ63mx7fvwt2xKPfYY", {
+    headers: {
+      Authorization: "Bearer " + token.access_token
+    }
+  })
+  const resultDataSpotify = await resultSpotify.json();
 
-    console.log(auth);
-//   const resultSoundcloud = await fetch(`https://api.soundcloud.com/users/oskarttofficial?consumer_key=8bcccc3476eaa137a084c9f0c041915f`)
-//   const resultDataSoundcloud = await resultSoundcloud.json()
-
-//   // create node for build time data example in the docs
-//   createNode({
-//     // nameWithOwner and url are arbitrary fields from the data
-//     followers: resultDataSoundcloud.followers_count,
-//     // required fields
-//     id: `soundcloud`,
-//     parent: null,
-//     children: [],
-//     internal: {
-//       type: `Soundcloud`,
-//       contentDigest: createContentDigest(resultDataSoundcloud),
-//     },
-//   })
+  // create node for build time data example in the docs
+  createNode({
+    followers: resultDataSpotify.followers.total,
+    // required fields
+    id: `spotify`,
+    parent: null,
+    children: [],
+    internal: {
+      type: `Spotify`,
+      contentDigest: createContentDigest(resultDataSpotify),
+    },
+  })
 }
