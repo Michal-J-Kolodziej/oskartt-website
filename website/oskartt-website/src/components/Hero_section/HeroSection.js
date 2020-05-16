@@ -44,10 +44,10 @@ const StyledWrapper = styled.div`
         content: '';
         display: block;
         
-        width: ${window.innerWidth * 0.6 + "px"};
+        width: ${ ({innerWidth}) => innerWidth * 0.6 + "px"};
         border-left: 0px solid transparent;
         /* border-right: 175px solid transparent; */
-        border-right: calc(100vw - ${window.innerWidth * 0.6 + "px"}) solid transparent;
+        border-right: calc(100vw - ${({innerWidth}) => innerWidth * 0.6 + "px"}) solid transparent;
         border-top: 100vh solid ${({theme}) => theme.colors.black};
 
         ${({theme}) => theme.media.desktop`
@@ -197,7 +197,7 @@ const HeroSection = ({image}) => {
     }
 
     return (
-        <StyledWrapper>
+        <StyledWrapper innerWidth={window.innerWidth}>
             <StyledHeroTextContainer>
                 <StyledTextContainer>
                     <StyledH1>oskar tt</StyledH1>
