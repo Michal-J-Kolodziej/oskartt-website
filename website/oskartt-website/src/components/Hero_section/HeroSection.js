@@ -193,7 +193,7 @@ const HeroSection = ({image}) => {
     }
 
     return (
-        <StyledWrapper innerWidth={window === undefined ? 300 : window.innerWidth}>
+        <StyledWrapper innerWidth={typeof window === undefined ? 300 : window.innerWidth}>
             <StyledHeroTextContainer>
                 <StyledTextContainer>
                     <StyledH1>oskar tt</StyledH1>
