@@ -42,7 +42,7 @@ const NumberSection = ({visible}) => {
         const oskarID = "2OVetJ63mx7fvwt2xKPfYY";
         const link = "https://api.spotify.com/v1/artists/";
         const clientID = btoa("fc847cbd8e6e43c995ef3c40843dcb12");
-        const clientSecret = btoa("X");
+        const clientSecret = btoa("3bbb9770daf6451a9118e776983f2679");
 
         const auth = await fetch("https://accounts.spotify.com/api/token", {
             method: 'POST',
