@@ -192,6 +192,10 @@ const HeroSection = ({image}) => {
         scrollTo('#work-section');
     }
 
+    if (typeof window === `undefined`) {
+        return(<></>);
+    }
+
     return (
         <StyledWrapper>
             <StyledHeroTextContainer>
