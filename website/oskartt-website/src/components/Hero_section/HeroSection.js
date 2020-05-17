@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import scrollTo from 'gatsby-plugin-smoothscroll';
@@ -12,8 +12,9 @@ const StyledWrapper = styled.div`
 
     background-image: linear-gradient(232deg, ${({theme}) => theme.colors.violet} 0%, ${({theme}) => theme.colors.blue} 100%);
 
-    padding: 50px 30px 0 30px;
-    height: ${({height}) => height ? height : '100vh'};
+    padding: 50px 30px;
+    /* height: ${({height}) => height ? height : '100vh'}; */
+    height: calc(var(--vh, 1vh) * 100);
 
     ${({theme}) => theme.media.tablet`
         padding: 40px 70px;
@@ -40,6 +41,7 @@ const StyledWrapper = styled.div`
         position: absolute;
         left: 0;
         bottom: 0;
+        /* top: 100%; */
         box-sizing: content-box;
         content: '';
         display: block;
@@ -51,6 +53,7 @@ const StyledWrapper = styled.div`
         border-top: 100vh solid ${({theme}) => theme.colors.black};
 
         ${({theme}) => theme.media.desktop`
+            bottom: 0;
             width: 45%;
             border-left: 0px solid transparent;
             border-right: 175px solid transparent;
@@ -191,6 +194,18 @@ const HeroSection = ({image}) => {
     const scrollToWorkSection = () => {
         scrollTo('#work-section');
     }
+
+    useEffect(() => {
+        let vh = window.innerHeight * 0.01;
+        // Then we set the value in the --vh custom property to the root of the document
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+        window.addEventListener('resize', () => {
+        // We execute the same script as before
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
+    }, [])
 
     if (typeof window === `undefined`) {
         return(
