@@ -105,7 +105,7 @@ exports.sourceNodes = async ({
     // required fields
     id: `facebook`,
     parent: null,
-    children: [],
+    children: [], 
     internal: {
       type: `Facebook`,
       contentDigest: createContentDigest(resultDataFacebook),
