@@ -103,4 +103,11 @@ exports.sourceNodes = async ({
       contentDigest: createContentDigest(resultDataSpotify),
     },
   })
+
+
+
+  const facebookToken = "EAADdqYWSffoBAIuZAHVRH6qFOJFq0kdgeGmDDwZCTjEfEsLCbQSfgvZCGSOdzs7ANH0NVDafi3wF4WFMNZBLbt0Q6YkcbosHUoO9B09xrjMgMqtyzivPnSj3FkxHl7gtnfFDMXqeUMvdM1G4VU9pf1xTBTeZAQLY1ZAowJ38IxOrVdzzNwSZAKgt7Xvsi6YAowZD";
+
+  const fbLink = "https://graph.facebook.com/v7.0/556344861218935/?fields=fan_count&access_token=EAADdqYWSffoBAIuZAHVRH6qFOJFq0kdgeGmDDwZCTjEfEsLCbQSfgvZCGSOdzs7ANH0NVDafi3wF4WFMNZBLbt0Q6YkcbosHUoO9B09xrjMgMqtyzivPnSj3FkxHl7gtnfFDMXqeUMvdM1G4VU9pf1xTBTeZAQLY1ZAowJ38IxOrVdzzNwSZAKgt7Xvsi6YAowZD";
+
 }
