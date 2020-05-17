@@ -1,20 +1,13 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
+process.env.NODE_ENV != 'production' ? require('dotenv').config({path: `./.env.development`}) : null; 
 const fetch = require(`node-fetch`);
 
-// USE process.env.GATSBY_... 
 
 exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
 }) => {
   //Youtube 
-  const resultYoutube = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC2tut2uPQ03NJuWt9vERSlw&key=AIzaSyCYQNff-B28PImGKYyjqBWdu3aYUhIoUY4`)
+  const resultYoutube = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC2tut2uPQ03NJuWt9vERSlw&key=${process.env.GATSBY_YOUTUBE_API_KEY}`)
   const resultDataYoutube = await resultYoutube.json();
 
   createNode({
@@ -48,7 +41,7 @@ exports.sourceNodes = async ({
   })
 
   //Soundcloud
-  const resultSoundcloud = await fetch(`https://api.soundcloud.com/users/oskarttofficial?consumer_key=8bcccc3476eaa137a084c9f0c041915f`)
+  const resultSoundcloud = await fetch(`https://api.soundcloud.com/users/oskarttofficial?consumer_key=${process.env.GATSBY_SOUNDCLOUD_API_KEY}`)
   const resultDataSoundcloud = await resultSoundcloud.json()
 
   // create node for build time data example in the docs
@@ -68,16 +61,12 @@ exports.sourceNodes = async ({
 
 
   //Spotify
-    
-    const clientID = 'fc847cbd8e6e43c995ef3c40843dcb12';
-    const clientSecret = '3bbb9770daf6451a9118e776983f2679';
-
 
     const auth = await fetch("https://accounts.spotify.com/api/token", {
         method: 'POST',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "Basic " + Buffer.from(`${clientID}:${clientSecret}`).toString('base64')
+            "Authorization": "Basic " + Buffer.from(`${process.env.GATSBY_SPOTIFY_CLIENT_ID}:${process.env.GATSBY_SPOTIFY_CLIENT_SECRET}`).toString('base64')
         },
         body: `grant_type=client_credentials`
     });
@@ -105,9 +94,22 @@ exports.sourceNodes = async ({
   })
 
 
+  //Facebook
+  const resultFacebook = await fetch(`https://graph.facebook.com/v7.0/556344861218935/?fields=fan_count&access_token=${process.env.GATSBY_FACEBOOK_API_KEY}`)
+  const resultDataFacebook = await resultFacebook.json()
 
-  const facebookToken = "EAADdqYWSffoBAIuZAHVRH6qFOJFq0kdgeGmDDwZCTjEfEsLCbQSfgvZCGSOdzs7ANH0NVDafi3wF4WFMNZBLbt0Q6YkcbosHUoO9B09xrjMgMqtyzivPnSj3FkxHl7gtnfFDMXqeUMvdM1G4VU9pf1xTBTeZAQLY1ZAowJ38IxOrVdzzNwSZAKgt7Xvsi6YAowZD";
-
-  const fbLink = "https://graph.facebook.com/v7.0/556344861218935/?fields=fan_count&access_token=EAADdqYWSffoBAIuZAHVRH6qFOJFq0kdgeGmDDwZCTjEfEsLCbQSfgvZCGSOdzs7ANH0NVDafi3wF4WFMNZBLbt0Q6YkcbosHUoO9B09xrjMgMqtyzivPnSj3FkxHl7gtnfFDMXqeUMvdM1G4VU9pf1xTBTeZAQLY1ZAowJ38IxOrVdzzNwSZAKgt7Xvsi6YAowZD";
+  // create node for build time data example in the docs
+  createNode({
+    // nameWithOwner and url are arbitrary fields from the data
+    likes: resultDataFacebook.fan_count,
+    // required fields
+    id: `facebook`,
+    parent: null,
+    children: [],
+    internal: {
+      type: `Facebook`,
+      contentDigest: createContentDigest(resultDataFacebook),
+    },
+  })
 
 }
