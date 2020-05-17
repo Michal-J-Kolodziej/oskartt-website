@@ -8,7 +8,7 @@ const StyledWrapper = styled.div`
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr; 
 
     background-image: linear-gradient(232deg, ${({theme}) => theme.colors.violet} 0%, ${({theme}) => theme.colors.blue} 100%);
 
