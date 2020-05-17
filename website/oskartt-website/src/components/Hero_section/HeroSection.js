@@ -13,7 +13,7 @@ const StyledWrapper = styled.div`
     background-image: linear-gradient(232deg, ${({theme}) => theme.colors.violet} 0%, ${({theme}) => theme.colors.blue} 100%);
 
     padding: 50px 30px;
-    /* height: ${({height}) => height ? height : '100vh'}; */
+    height: ${({height}) => height ? height : '100vh'};
     height: calc(var(--vh, 1vh) * 100);
 
     ${({theme}) => theme.media.tablet`
@@ -23,6 +23,8 @@ const StyledWrapper = styled.div`
     ${({theme}) => theme.media.desktop`
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
+
+        height: ${({height}) => height ? height : '100vh'};
 
         ::after {
             position: absolute;
@@ -200,11 +202,11 @@ const HeroSection = ({image}) => {
         // Then we set the value in the --vh custom property to the root of the document
         document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-        window.addEventListener('resize', () => {
-        // We execute the same script as before
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-        });
+        // window.addEventListener('resize', () => {
+        // // We execute the same script as before
+        // let vh = window.innerHeight * 0.01;
+        // document.documentElement.style.setProperty('--vh', `${vh}px`);
+        // });
     }, [])
 
     if (typeof window === `undefined`) {
