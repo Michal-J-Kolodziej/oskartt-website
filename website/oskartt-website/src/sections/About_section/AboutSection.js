@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import StyledSectionTitle from '../Styled_section_title/StyledSectionTitle';
-import StyledParagraph from '../Styled_paragraph/StyledParagraph';
+import { StaticQuery, graphql } from "gatsby";
+import StyledSectionTitle from '../../components/Styled_section_title/StyledSectionTitle';
+import StyledParagraph from '../../components/Styled_paragraph/StyledParagraph';
 
 const StyledWrapper = styled.div`
     position: relative;
@@ -39,11 +40,12 @@ const StyledWrapper = styled.div`
     `}
 
     ${({theme}) => theme.media.desktop`
-        height: 80vh;
+        height: 90vh;
+        overflow: hidden;
 
         ::before {   
             
-            border-top: 80vh solid ${({theme}) => theme.colors.black};
+            border-top: 100vh solid ${({theme}) => theme.colors.black};
         }
     `}
 
@@ -86,23 +88,35 @@ const StyledP = styled(StyledParagraph)`
     `}
 `;
 
-const paragraphText = `lorem ipsum dolor sit amet, consectetur adipiscing elit. pellentesque suscipit suscipit odio, vulputate posuere justo scelerisque a. vestibulum varius sollicitudin augue, sed dictum diam ornare eu. integer in interdum purus, vel tincidunt enim. aliquam in tortor et nulla cursus dignissim. morbi magna nunc, laoreet eget nulla nec, ultrices dictum nunc. donec dapibus, nibh et egestas molestie, ante arcu tempor dolor, id commodo elit diam non nisi. maecenas pharetra lectus a justo ullamcorper ullamcorper.`;
-
-const AboutSection = () => {
+const AboutSection = ({data: {datoCmsAbout: {title, aboutText}}}) => {
     return (
         <StyledWrapper height={"75vh"}>
             <StyledContentContainer>
                 <StyledTitle
                     underlineColor={'blue'}
                 >
-                    about me
+                    {title}
                 </StyledTitle>
                 <StyledP>
-                    {paragraphText}
+                    {aboutText}
                 </StyledP>
             </StyledContentContainer>
         </StyledWrapper>
     )
 }
 
-export default AboutSection;
+export default function AboutQuery() {
+    return (
+      <StaticQuery
+        query={graphql`
+          query {
+            datoCmsAbout {
+                title
+                aboutText
+            }
+          }
+        `}
+        render={data => <AboutSection data={data} />}
+      />
+    )
+  }

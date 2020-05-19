@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { StaticQuery, graphql } from "gatsby";
 import styled from 'styled-components';
-import SectionWrapper from '../Section_wrapper/SectionWrapper';
-import NumberContainer from '../Number_container/NumberContainer';
+import SectionWrapper from 'components/Section_wrapper/SectionWrapper';
+import NumberContainer from 'components/Number_container/NumberContainer';
 
 const StyledWrapper = styled.div`
     display: flex;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -89,7 +90,7 @@ const StyledContent = styled.p`
 `;
 
 const OpinionContainer = ({name, title, content}) => {
-
+    
     return (
         <StyledContainer>
             <StyledImage />

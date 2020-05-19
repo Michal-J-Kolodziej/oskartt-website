@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StaticQuery, graphql } from "gatsby";
 import Logo from '../../images/oskar_tt_logo.svg';
 import Socials from '../Socials/Socials';
 
@@ -64,17 +65,30 @@ const StyledCopyright = styled.p`
     `}
 `;
 
-const Footer = () => {
+const Footer = ({data: {datoCmsFooter: {footerText}}}) => {
 
     return (
         <StyledWrapper>
             <StyledLogo />
             <StyledSocials />
             <StyledCopyright>
-            © 2020 Oskar Trąpczyński. All rights reserved.
+                {footerText}
             </StyledCopyright>
         </StyledWrapper>
     )
 }
 
-export default Footer;
+export default function FooterQuery() {
+    return (
+      <StaticQuery
+        query={graphql`
+          query {
+            datoCmsFooter {
+                footerText
+            }
+          }
+        `}
+        render={data => <Footer data={data} />}
+      />
+    )
+  }

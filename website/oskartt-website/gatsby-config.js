@@ -1,4 +1,5 @@
 const path = require('path');
+process.env.NODE_ENV != 'production' ? require('dotenv').config({path: `./.env.development`}) : null; 
 
 module.exports = {
   siteMetadata: {
@@ -47,7 +48,13 @@ module.exports = {
         utils: path.join(__dirname, 'src/utils'),
         images: path.join(__dirname, 'src/images'),
       }
-    }
+    },
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.GATSBY_DATOCMS_API_KEY,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

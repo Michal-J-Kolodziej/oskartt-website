@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { StaticQuery, graphql } from "gatsby";
 import Img from 'gatsby-image';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
@@ -38,10 +39,11 @@ const StyledWrapper = styled.div`
             font-weight: ${({theme}) => theme.font.medium};
         }
     `}
-
+    
     ::before {
         position: absolute;
         left: 0;
+        top: 0;
         bottom: 0;
         /* top: 100%; */
         box-sizing: content-box;
@@ -191,22 +193,15 @@ const StyledButton = styled.button`
 `;
 
 
-const HeroSection = ({image}) => {
-
+const HeroSection = ({image, data: {datoCmsHero: {heroTitle, heroSubtitle, aboveButtonText}}}) => {
+    
     const scrollToWorkSection = () => {
         scrollTo('#work-section');
     }
 
     useEffect(() => {
         let vh = window.innerHeight * 0.01;
-        // Then we set the value in the --vh custom property to the root of the document
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-        // window.addEventListener('resize', () => {
-        // // We execute the same script as before
-        // let vh = window.innerHeight * 0.01;
-        // document.documentElement.style.setProperty('--vh', `${vh}px`);
-        // });
     }, [])
 
     if (typeof window === `undefined`) {
@@ -214,12 +209,12 @@ const HeroSection = ({image}) => {
             <StyledWrapper innerWidth={300}>
                 <StyledHeroTextContainer>
                     <StyledTextContainer>
-                        <StyledH1>oskar tt</StyledH1>
-                        <StyledH2>dj, producer, designer</StyledH2>
+                        <StyledH1>{heroTitle}</StyledH1>
+                        <StyledH2>{heroSubtitle}</StyledH2>
                     </StyledTextContainer>
 
                     <StyledButtonContainer>
-                        <StyledP>Want to work with me?</StyledP>
+                        <StyledP>{aboveButtonText}</StyledP>
                         <StyledButton onClick={() => scrollToWorkSection()}>Contact</StyledButton>
                     </StyledButtonContainer>
                 </StyledHeroTextContainer>
@@ -232,12 +227,12 @@ const HeroSection = ({image}) => {
         <StyledWrapper innerWidth={window.innerWidth}>
             <StyledHeroTextContainer>
                 <StyledTextContainer>
-                    <StyledH1>oskar tt</StyledH1>
-                    <StyledH2>dj, producer, designer</StyledH2>
+                    <StyledH1>{heroTitle}</StyledH1>
+                    <StyledH2>{heroSubtitle}</StyledH2>
                 </StyledTextContainer>
 
                 <StyledButtonContainer>
-                    <StyledP>Want to work with me?</StyledP>
+                    <StyledP>{aboveButtonText}</StyledP>
                     <StyledButton onClick={() => scrollToWorkSection()}>Contact</StyledButton>
                 </StyledButtonContainer>
             </StyledHeroTextContainer>
@@ -246,4 +241,19 @@ const HeroSection = ({image}) => {
     )
 }
 
-export default HeroSection;
+export default function HeroQuery({image}) {
+    return (
+      <StaticQuery
+        query={graphql`
+          query {
+            datoCmsHero {
+                heroTitle
+                heroSubtitle
+                aboveButtonText
+            }
+          }
+        `}
+        render={data => <HeroSection data={data} image={image}/>}
+      />
+    )
+  }

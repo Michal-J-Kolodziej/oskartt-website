@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StaticQuery, graphql } from "gatsby";
 import Img from 'gatsby-image';
-import SectionWrapper from '../Section_wrapper/SectionWrapper';
-import StyledParagraph from '../Styled_paragraph/StyledParagraph';
-import StyledSectionTitle from '../Styled_section_title/StyledSectionTitle';
+import SectionWrapper from '../../components/Section_wrapper/SectionWrapper';
+import StyledParagraph from '../../components/Styled_paragraph/StyledParagraph';
+import StyledSectionTitle from '../../components/Styled_section_title/StyledSectionTitle';
 
 const StyledWrapper = styled.div`
 
@@ -108,10 +109,8 @@ const StyledContact = styled.h6`
     }
 `;
 
-const paragraphText = `lorem ipsum dolor sit amet, consectetur adipiscing elit. pellentesque suscipit suscipit odio, vulputate posuere justo scelerisque a. vestibulum varius sollicitudin augue, sed dictum diam ornare eu. integer in interdum purus, vel tincidunt enim. aliquam in tortor et nulla cursus dignissim. morbi magna nunc, laoreet eget nulla nec, ultrices dictum nunc. donec dapibus, nibh et egestas molestie, ante arcu tempor dolor, id commodo elit diam non nisi. maecenas pharetra lectus a justo ullamcorper ullamcorper.`;
 
-
-const WorkSection = ({image}) => {
+const WorkSection = ({image, data: { datoCmsWork: {title, workText, email, facebookLinkTitle, facebookLink}}}) => {
     return (
         <SectionWrapper>
             <StyledWrapper id={'work-section'}>
@@ -121,18 +120,18 @@ const WorkSection = ({image}) => {
                         <StyledTitle
                             underlineColor={'blue'}
                         >
-                            Work with me
+                            {title}
                         </StyledTitle>
                         <StyledP>
-                            {paragraphText}
+                            {workText}
                         </StyledP>
                     </div>
                     <div>
                         <StyledContact>
-                            Email: <span>jankowalski@gmail.com</span>
+                            Email: <span>{email}</span>
                         </StyledContact>
                         <StyledContact>
-                            Facebook: <span><a href="https://facebook.com/OskarT.TOfficial" target="_blank" rel="noopener noreferrer">facebook.com/OskarT.TOfficial</a></span>
+                            Facebook: <span><a href={facebookLink} target="_blank" rel="noopener noreferrer">{facebookLinkTitle}</a></span>
                         </StyledContact>
                     </div>
                 </StyledContentContainer>
@@ -141,4 +140,21 @@ const WorkSection = ({image}) => {
     )
 }
 
-export default WorkSection;
+export default function WorkQuery({image}) {
+    return (
+      <StaticQuery
+        query={graphql`
+          query {
+            datoCmsWork {
+                title
+                workText
+                email
+                facebookLinkTitle
+                facebookLink
+            }
+          }
+        `}
+        render={data => <WorkSection data={data} image={image}/>}
+      />
+    )
+  }

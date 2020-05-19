@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
-import HeroSection from "../components/Hero_section/HeroSection";
-import AboutSection from "../components/About_section/AboutSection";
+import HeroSection from "../sections/Hero_section/HeroSection";
+import AboutSection from "../sections/About_section/AboutSection";
 import { graphql } from "gatsby";
-import NumberSection from "../components/Numbers_section/NumbersSection";
-import OpinionsSection from "../components/Opinions_section/OpinionsSection";
-import WorkSection from "../components/Work_section/WorkSection";
+import NumberSection from "../sections/Numbers_section/NumbersSection";
+import OpinionsSection from "../sections/Opinions_section/OpinionsSection";
+import WorkSection from "../sections/Work_section/WorkSection";
 import Footer from "../components/Footer/Footer";
 import VisiblitySensor from "react-visibility-sensor";
 
