@@ -37,7 +37,7 @@ export const dataImage = graphql`
     hero: file(name: {regex: "/hero_image/"}) {
       childImageSharp {
         fluid(maxWidth: 1000, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
+          ...GatsbyImageSharpFluid_withWebp_noBase64
         }
       }
     }
