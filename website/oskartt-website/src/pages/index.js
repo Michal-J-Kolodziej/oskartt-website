@@ -36,14 +36,14 @@ export const dataImage = graphql`
   query {
     hero: file(name: {regex: "/hero_image/"}) {
       childImageSharp {
-        fluid(maxWidth: 750, quality: 50) {
+        fluid(maxWidth: 1000, quality: 50) {
           ...GatsbyImageSharpFluid_noBase64
         }
       }
     }
     work: file(name: {regex: "/oskar_work/"}) {
       childImageSharp {
-        fluid(maxWidth: 750, quality: 50) {
+        fluid(maxWidth: 1000, quality: 50) {
           ...GatsbyImageSharpFluid_noBase64
         }
       }
