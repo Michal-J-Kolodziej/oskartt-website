@@ -8,6 +8,7 @@ module.exports = {
     author: `Michał Kołodziej`,
   },
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
