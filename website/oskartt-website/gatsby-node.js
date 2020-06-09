@@ -75,7 +75,8 @@ exports.sourceNodes = async ({
   
 
   //Instagram
-  const resultInstagram = await fetch(`https://www.instagram.com/oskarttofficial/?__a=1`)
+  const instagramEndpoint = "https://www.instagram.com/oskarttofficial/?__a=1";
+  const resultInstagram = await fetch(instagramEndpoint)
   console.log("================================");
   console.log(resultInstagram);
   console.log("================================");
