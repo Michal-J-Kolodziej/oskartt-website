@@ -77,6 +77,9 @@ exports.sourceNodes = async ({
   //Instagram
   const resultInstagram = await fetch(`https://www.instagram.com/oskarttofficial/?__a=1`)
   const resultDataInstagram = await resultInstagram.json()
+  console.log("================================");
+  console.log(resultDataInstagram);
+  console.log("================================");
 
   createNode({
     followers: resultDataInstagram.graphql.user.edge_followed_by.count,
