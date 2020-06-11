@@ -1,7 +1,7 @@
 process.env.NODE_ENV != 'production' ? require('dotenv').config({path: `./.env.development`}) : null; 
 const fetch = require(`node-fetch`);
 const cheerio = require('cheerio');
-const followers = require('instagram-followers');
+const puppeteer = require('puppeteer');
 
 
 exports.sourceNodes = async ({
@@ -77,24 +77,28 @@ exports.sourceNodes = async ({
   
 
   //Instagram
-  // const instagramEndpoint = "https://www.instagram.com/oskarttofficial/?__a=1";
+  // // const instagramEndpoint = "https://www.instagram.com/oskarttofficial/?__a=1";
   const instagramEndpoint = "https://www.instagram.com/oskarttofficial/";
   // const resultInstagram = await fetch(instagramEndpoint)
   const resultInstagram = await fetch(instagramEndpoint)
   const resultDataInstagram = await resultInstagram.text()
-  // const $ = cheerio.load(resultDataInstagram);
-  // console.log(resultInstagram);
-  // console.log("------");
-  // const res = $('meta[name=description]').attr('content');
-  // const spaceIndex = res.indexOf(' ');
-  // const igFollowers = res.slice(0, spaceIndex);
-  // console.log(igFollowers);
-  // console.log("------");
 
-  const igFollowers = await followers('oskarttofficial');
+  const browser = await puppeteer.launch( {headless: true});
+  const page = await browser.newPage();
 
+  await page.goto('https://www.instagram.com/oskarttofficial/');
+
+  await page.waitFor(2000);
+
+  const data = await page.evaluate( () => {
+      const igFollowers = document.querySelectorAll('li > a.-nal3 > span.g47SY ')[1].textContent;
+      return igFollowers;
+  });
+  console.log("-----------------------------");
+  console.log(data);
+  await browser.close();
   createNode({
-    followers: igFollowers,
+    followers: data,
     
     id: `instagram`,
     parent: null,
