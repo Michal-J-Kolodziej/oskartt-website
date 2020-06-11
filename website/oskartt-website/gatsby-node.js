@@ -82,6 +82,7 @@ exports.sourceNodes = async ({
   const resultInstagram = await fetch(instagramEndpoint)
   const resultDataInstagram = await resultInstagram.text()
   const $ = cheerio.load(resultDataInstagram);
+  console.log(resultInstagram);
   console.log("------");
   const res = $('meta[name=description]').attr('content');
   const spaceIndex = res.indexOf(' ');
