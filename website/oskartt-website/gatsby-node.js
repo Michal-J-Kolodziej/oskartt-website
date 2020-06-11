@@ -1,6 +1,7 @@
 process.env.NODE_ENV != 'production' ? require('dotenv').config({path: `./.env.development`}) : null; 
 const fetch = require(`node-fetch`);
 const cheerio = require('cheerio');
+const followers = require('instagram-followers');
 
 
 exports.sourceNodes = async ({
@@ -81,14 +82,16 @@ exports.sourceNodes = async ({
   // const resultInstagram = await fetch(instagramEndpoint)
   const resultInstagram = await fetch(instagramEndpoint)
   const resultDataInstagram = await resultInstagram.text()
-  const $ = cheerio.load(resultDataInstagram);
-  console.log(resultInstagram);
-  console.log("------");
-  const res = $('meta[name=description]').attr('content');
-  const spaceIndex = res.indexOf(' ');
-  const igFollowers = res.slice(0, spaceIndex);
-  console.log(igFollowers);
-  console.log("------");
+  // const $ = cheerio.load(resultDataInstagram);
+  // console.log(resultInstagram);
+  // console.log("------");
+  // const res = $('meta[name=description]').attr('content');
+  // const spaceIndex = res.indexOf(' ');
+  // const igFollowers = res.slice(0, spaceIndex);
+  // console.log(igFollowers);
+  // console.log("------");
+
+  const igFollowers = await followers('oskarttofficial');
 
   createNode({
     followers: igFollowers,
