@@ -88,7 +88,7 @@ exports.sourceNodes = async ({
 
   await page.goto('https://www.instagram.com/oskarttofficial/');
 
-  await page.waitFor(2000);
+  await page.waitFor(5000);
 
   const data = await page.evaluate( () => {
       const igFollowers = document.querySelectorAll('li > a.-nal3 > span.g47SY ')[1].textContent;
